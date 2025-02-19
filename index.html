@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brothel El Brudel</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+         select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+        border-color: #d81b60;
+        outline: none;
+        box-shadow: 0 0 8px rgba(216, 27, 96, 0.2);
+    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+        nav a.active {
+            background-color: #d81b60;
+            color: #fff;
+            font-weight: bold;
+        }
+        .content {
+            display: none;
+            opacity: 0;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1100px;
+            background-color: #ffe6f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.8s ease;
+        }
+        .content.active {
+            display: block;
+            opacity: 1;
+        }
+        .content img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .content h2 {
+            color: #d81b60;
+        }
+        .content .text {
+            margin-bottom: 20px;
+        }
+        .content i {
+            font-style: italic;
+            color: #555;
+        }
+        form input, form textarea, form button {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        form button:hover {
+            background-color: #b7154d;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #Whores ul {
+    list-style: none;
+    padding: 0;
+}
+#Whores ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#Whores li {
+    background: linear-gradient(135deg, #ffe6f0, #fce4ec);
+    margin: 12px 0;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #d81b60;
+}
+
+#Whores li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #ffd1dc, #f8bbd0);
+}
+
+#Whores li a {
+    text-decoration: none;
+    color: #d81b60;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#Whores li a:hover {
+    color: #b7154d;
+    text-decoration: underline;
+}
+
+#Whores li::before {
+    content: "🫦";
+    font-size: 24px;
+}
+
+
+#services ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#services li {
+    background: linear-gradient(135deg, #ffe6f0, #fce4ec);
+    margin: 12px 0;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #d81b60;
+}
+
+#services li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #ffd1dc, #f8bbd0);
+}
+
+#services li::before {
+    content: "💦";
+    font-size: 24px;
+}
+
+#services li i {
+    font-style: normal;
+    color: #d81b60;
+    font-weight: bold;
+}
+
+
+    </style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; position: relative; padding: 10px 0;">
+        <img src="logo.png" alt="Brothel El Brudel Logo" style="height: 50px; width: auto; position: absolute; left: 0;">
+        <div style="margin: 0 auto; text-align: center;">
+            <h1 style="margin: 0;">Brothel El Brudel</h1>
+            <p style="margin: 0;">Your orgasm, our motto</p>
+        </div>
+    </header>
+    
+    
+    
+
+    <nav>
+        <a href="#home" onclick="showTab('home', this)">Home</a>
+        <a href="#about" onclick="showTab('about', this)">About Us</a>
+        <a href="#services" onclick="showTab('services', this)">Services</a>
+        <a href="#Whores" onclick="showTab('Whores', this)">Whores</a>
+        <a href="#reserve" onclick="showTab('reserve', this)">Reserve</a>
+        <a href="#contact" onclick="showTab('contact', this)">Contact</a>
+    </nav>
+
+    <div id="home" class="content active">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;">
+            <div class="text" style="flex: 1;">
+                <p>Step into a world where fantasies awaken and desires become art. Nestled in the heart of Kolkata, Brothel El Brudel is more than a club—it’s an icon of indulgence, luxury, and sophistication. From exclusive soirées with society’s elite to gourmet dining that excites your senses, every detail is designed to exceed expectations. Our electrifying live performances and intimate retreats promise unforgettable nights.</p>
+    
+                <p>This is not just a visit—it’s a legacy of passion and perfection. At Brothel El Brudel, every guest is royalty, and every night is a masterpiece.</p>
+    
+                <h3>From the Big 4</h3>
+                <p><i>Our Journey with Sohail Inc. (child company of Pappu Inc.) started earlier in 2022. We were merely investors in Fatma Garments (sub conpany of Sohail Inc. under the parent company Pappu Inc.), a company that was facing significant operational challenges. Despite constant borrowing, the funds were not being effectively utilized. Instead of focusing on production and growth, the company invested heavily in employee comfort without ensuring productivity. Employees were enjoying overly relaxed lifestyles, working minimally, while the company struggled to generate revenue.</i></p>
+    
+                <p><i>When we assumed leadership of Pappu Inc., we made decisive changes. Our approach was not about imposing pressure or creating a burdensome and forcing our employees. Instead, we focused on fostering a culture where employees found genuine satisfaction and passion in their work and started craving for cocks and cumshots. We introduced structures that encouraged employees orgasms and satisfactions along with customer satisfaction, efficiency, creativity, and personal growth. Employees began to take ownership of their roles, and their enthusiasm translated into increased productivity and higher earnings.</i></p>
+    
+                <p><i>Today, our workforce is not only happier but also more driven. They are achieving their potential earning more than they earlier used to, and the company is thriving. This transformation reinforced our belief that the best results come when employees are both valued and empowered and made to love their jobs, they contribute meaningfully.</i></p>
+    
+                <p><i>- Managing Board of BeB</i></p>
+            </div>
+            <img src="mainimg.png" alt="Brothel El Brudel" style="max-width: 300px; height: auto; border-radius: 10px; object-fit: cover; align-self: stretch;">
+        </div>
+    </div>
+ 
+    
+
+    <div id="about" class="content">
+        <h2>About Us</h2>
+        <p>Our mission is simple yet ambitious: to provide unparalleled experiences that blend elegance, exclusivity, and exceptional service. We are driven by the belief that pleasure should be accessible to all, delivered with the highest standards of hospitality and entertainment.</p>
+        <br>
+    
+        <strong>Our Origins</strong><br>
+        It all began in 2022, when we were established as Fatma Garments, a small startup with a modest capitalization of just 20,000 INR. What set us apart from the beginning was our unique value proposition—cheap prostitutes and unbeatable value for money. Word spread quickly, and our reputation grew rapidly.
+        <br><br>
+
+        <strong>Early Supplier – Pappu Inc. & Family</strong><br>
+        Our rapid success would not have been possible without the unwavering support of Pappu and his family. They became the backbone of our supply chain, ensuring a steady flow of "hoes" to meet our ever-growing demand. Their dedication kept our operations running smoothly during our critical growth phase.
+        <br><br>
+
+        <strong>Early History</strong><br>
+        In 1994, Pappu Inc. was established as the parent company, with a vision to create a network of subsidiaries that would help attract investors and drive business growth. The first of these subsidiaries was Raja Inc., whose primary responsibility was to gather funds from investors and channel them into Pappu Inc. However, Raja Inc. struggled to generate revenue, leading Pappu Inc. to launch two additional subsidiaries: Sohail Inc. and Ispak Inc., both tasked with attracting investments.
+
+        Initially, all subsidiaries of Pappu Inc. faced financial and operational difficulties. However, in early 2022, Sohail Inc. decided to diversify its operations beyond fundraising. It expanded by creating a sub-child company known as Fatma Garments (now rebranded as Brothel El Brudel). While Sohail Inc. managed the company, Pappu Inc. oversaw its operations and served as the primary supplier of its workforce.
+        
+        Meanwhile, Raja Inc. and Ispak Inc. remained focused on their original purpose of attracting investors and securing funds. Despite these efforts, poor management, inefficiencies, and lack of a strong production strategy led to significant financial struggles. The company’s failures eventually resulted in the downfall of Fatma Garments, which was later overtaken by The Big 4, the current group of key shareholders driving the company’s revival.<p>
+        
+        <strong>Changing of the Guard</strong><br>
+        Eventually, Pappu Inc. lost its stake in the company due to constantly borrowing form the current shareholders which lead Pappu Inc. into a huge debt of $30 Million. In January 2024, Pappu Inc. declared itself bankrupt along with its subsidiaries companies Sohail Inc., Raja Inc. and Ispak Inc. which ultimately led to the take over of the Brothel El Brudel (then known as Fatma Garments) by the current new shareholders known as <strong> The Big 4</strong>. Brothel El Brudel is now managed by a board of four majority shareholders. While this marked the end of Pappu Inc.'s involvement, it resulted in retention for all employees and all the employees fell under the control of the four new shareholders which ensured our mission continued without disruption. Ever since the company was overtaken by the new shareholders, the company saw arithmetic growth and quickly gained $160 Billion within a year and is constantly growing, thanks to the employees who work their asses of until it is ripped.<p>
+
+            <strong>The Rise to Glory</strong><br>
+        By the end of 2024, the company had outgrown its humble beginnings and rebranded itself as Brothel El Brudel—a name that resonated with our growing empire. Within two years, our valuation skyrocketed to an astonishing $205 billion, marking the fastest growth in corporate history.
+        <br><br>
+    
+        <strong>Our Vision – A Future for All</strong><br>
+        Our agenda was clear: <strong>"Pussy for Every Human – Affordable for All."</strong><br>
+        We strive to democratize pleasure, making it accessible to every individual on the planet, without compromising on quality or experience.
+        <br><br>
+    
+        <strong>Join Us</strong><br>
+        Whether you're seeking unforgettable experiences or a partnership to shape the future of this thriving industry — <a href="https://forms.gle/FQbBU8eSsW6naEP57" target="_blank">Join us at Brothel El Brudel</a><p>
+        Together, we’re not just breaking beds and records; we’re rewriting history<p>
+    </div>
+
+    <div id="services" class="content">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Handjobs <i>(starting @$05/hr only)</i></li>
+            <li>Blowjobs <i>(starting @$10/hr only)</i></li>
+            <li>Sex <i>(starting @$25/hr only)</i></li>
+            <li>Sex with foreplay<i>(starting @$25+10/hr only)</i></li>
+            <li>BDSM <i>(starting @$51/hr only)</i></li>
+        </ul>
+    </div>
+
+    <div id="Whores" class="content">
+        <h2>Top Picks</h2>
+        <ul>
+            <li><a href="https://www.instagram.com/irfat_khaiyyam_" target="_blank">Irfat Khaiyyam</a></li>
+            <li><a href="https://www.instagram.com/omaira__khaiyyam" target="_blank">Omaira Khaiyyam</a></li>
+            <li><a href="https://www.instagram.com/mdsohail.k" target="_blank">Zainab Khaiyyam</a></li>
+            <li><a href="https://www.instagram.com/md_raaahil" target="_blank">Fatma Begum</a></li>
+            <li><a href="https://www.instagram.com/_.shazia_ahmed._" target="_blank">Suhana Randy Kate</a></li>
+        </ul>
+    </div>
+
+    <div id="reserve" class="content">
+        <h2>Reserve Your Night</h2>
+        <form id="reservationForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        
+            <label for="date">Date of visit : </label>
+            <input type="date" id="date" name="date" required>
+        
+            <label for="whores">Choose a Whore:</label>
+            <select id="whores" name="whores" required>
+                <option value="" disabled selected>Select a Whore</option>
+                <option value="irfat">Irfat Khaiyyam</option>
+                <option value="omaira">Omaira Khaiyyam</option>
+                <option value="zainab">Zainab Khaiyyam</option>
+                <option value="fatma">Fatma Begum</option>
+                <option value="suhu">Suhana Randy Kate</option>
+                <option value="others">Others</option>
+            </select>
+        
+            <button type="button" onclick="window.location.href='upi://pay?pa=6291521820@hdfcbank&pn=Md%20Ispak&cu=INR&am=450';">
+                Pay $5 (Reservation fee)
+            </button>
+        
+            <input type="text" name="transaction" placeholder="Payment transaction ID ($5 will be deducted from final bill)" required>
+            <button type="submit">Reserve Now</button>
+        </form>
+    </div>
+
+    <div id="contact" class="content">
+        <h2>Contact Us</h2>
+        <p>Reach out to us for reservations, inquiries, or assistance.</p>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p><i class="fas fa-phone"></i> Phone: +91 6291521820</p>
+        <p><i class="fas fa-envelope"></i> Email: help@brothelelbrudel.com</p>
+        <p> For quick assistance related to our whore's and their prices, you can reach out to our cuck pimp - <a href="https://wa.link/7mkjmw" target="_blank">Azharuddin</a></p>
+    </div>
+
+    <footer>
+        © 2025 Brothel El Brudel Pvt. Ltd. All Rights Reserved.
+    </footer>
+
+    <script>
+        function showTab(tabId, element) {
+            const contents = document.querySelectorAll('.content');
+            const navLinks = document.querySelectorAll('nav a');
+
+            contents.forEach(content => content.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const selectedContent = document.getElementById(tabId);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+
+            if (element) {
+                element.classList.add('active');
+            }
+        }
+
+        // Set home as default tab on page load
+        window.onload = () => {
+            const homeLink = document.querySelector('nav a[href="#home"]');
+            showTab('home', homeLink);
+        };
+
+        //script for Reservation form
+        document.getElementById("reservationForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+    
+        const formData = new FormData(this);
+        const url = "https://script.google.com/macros/s/AKfycbxcpE28hOAMY7qKPlz0SvzIEMuSzbWBDOETdiIwqTuAAo5BOpkE8JKgobL-6jGmzVOh/exec"; // Paste the Web App URL here
+    
+        fetch(url, {
+          method: "POST",
+          body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+          console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
+      });
+
+      //script for contact us form
+      document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+    
+        const formData = new FormData(this);
+        const url = "https://script.google.com/macros/s/AKfycbwFTqmH2JQMkb2-36s6waYJ5_aTj0LFbeyrzOc6vgo-I7zPXu_OfaZxKFp0R4y38lsAxQ/exec"; // Replace with your Web App URL from Apps Script
+    
+        fetch(url, {
+          method: "POST",
+          body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+          alert(data); // This will show "Thank you for contacting us. We will get back to you shortly."
+          this.reset(); // Optional: Reset form after submission
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Something went wrong. Please try again later.');
+        });
+      });
+      
+    </script>
+</body>
+</html>
